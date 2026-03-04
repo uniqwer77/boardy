@@ -2,7 +2,7 @@
 ![панель VK Cloud с VPS](screenshots/02-vps.png)
 ![правила файрвола](screenshots/03-firewall.png)
 ![терминал PuTTY после подключения](screenshots/04-putty.png)
-![hostname + timedatect](screenshots/05-hostname.pn)
+![hostname + timedatect](screenshots/05-hostname.png)
 ![приглашение student@chazov:~$](screenshots/06-student.png)
 ![настройки Git](screenshots/07-git-config.png)
 ![успешная аутентификация в GitHub](screenshots/08-ssh-github.png)
