@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f6f7;
+}
+
+.posts-container {
+  max-width: 1400px;
+  width: 90%;
+  margin: 30px auto;
+}
+
+.posts-header {
+  margin-bottom: 15px;
+  color: #3284b4;
+    font-size: 28px;
+}
+
+.post-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 18px 20px;      
+  margin-bottom: 16px;     
+  position: relative;
+}
+
+.post-author {
+  font-weight: bold;
+  color: #3284b4;
+  font-size: 20px;         
+}
+
+.post-date {
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  font-size: 16px;
+  color: #888;
+}
+
+.post-body {
+  margin-top: 12px;       
+  color: #444;
+  line-height: 1.6;        
+  font-size: 18px;
+}

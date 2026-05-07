@@ -1,42 +1,43 @@
 <?php
+session_set_cookie_params([
+    'lifetime' => 0,          
+    'path'     => '/',
+    'secure'   => true,    
+    'httponly' => true,       
+    'samesite' => 'Lax'      
+]);
+
+session_start();
+
+if (empty($_SESSION['user_id'])) {
+    header('Location: /login.php');
+    exit; 
+}
+
 require_once 'db.php';
  
-$name = $_POST['name'] ?? '';
-$message = $_POST['message'] ?? '';
+$userId = $_SESSION['user_id'];
+$message = $_POST['body'] ?? '';
  
-if ($name && $message) {
-    // Ищем или создаём пользователя
-    $stmt = $pdo->prepare('SELECT id FROM users WHERE name = ?');
-    $stmt->execute([$name]);
-    $user = $stmt->fetch();
- 
-    if (!$user) {
-        $stmt = $pdo->prepare(
-            'INSERT INTO users (name, email, password) VALUES (?, ?, ?)'
-        );
-        $stmt->execute([$name, $name.'@boardy.local', 'temp']);
-        $user_id = $pdo->lastInsertId();
-    } else {
-        $user_id = $user['id'];
-    }
- 
-    // Создаём пост (prepared statement!)
+if ($message) {
     $stmt = $pdo->prepare(
-        'INSERT INTO posts (title, body, author_id) VALUES (?, ?, ?)'
+        'INSERT INTO posts (body, author_id) VALUES (?, ?)'
     );
-    $stmt->execute(['Сообщение', $message, $user_id]);
+    $stmt->execute([$message, $userId]);
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="ru">
-<head><meta charset="utf-8"><title>Boardy</title>
-<link rel="stylesheet" href="/css/style.css"></head>
-<body>
-<header><h1><a href="/">Boardy</a></h1></header>
-<main>
-  <h2>Спасибо, <?= htmlspecialchars($name) ?>!</h2>
-  <p><a href="/">На главную</a> |
-     <a href="/messages.php">Все сообщения</a></p>
-</main>
-</body></html>
+<
+    <head><meta charset="utf-8"><title>Boardy</title>
+    <link rel="stylesheet" href="/css/style.css"></head>
+    <body>
+        <header><h1><a href="/">Boardy</a></h1></header>
+        <main>
+            <h2>Спасибо, <?= htmlspecialchars($name) ?>!</h2>
+            <p><a href="/index.php">На главную</a> |
+                <a href="/messages.php">Все сообщения</a></p>
+        </main>
+    </body>
+</html>

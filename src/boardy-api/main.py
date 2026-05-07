@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-from fastapi import FastAPI
-from datetime import datetime
-import aiomysql
- 
-app = FastAPI(title='Boardy API', version='0.2.0')
- 
-=======
-from fastapi.middleware.cors import CORSMiddleware
+sfrom fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from datetime import datetime
 import aiomysql
@@ -29,7 +21,6 @@ app.add_middleware(
  
 app.include_router(comments.router)
 
->>>>>>> lab9
 DB_CONFIG = {
     'host': '127.0.0.1',
     'port': 3306,

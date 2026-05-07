@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #1A5276; 
+    padding: 0 60px; 
+    display: flex;
+    align-items: stretch; 
+    justify-content: space-between; 
+    height: 60px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.nav-left {
+    display: flex;
+    align-items: stretch;
+    flex-grow: 1; 
+}
+
+.nav-right {
+    display: flex;
+    align-items: stretch;
+    margin-left: auto; 
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 0 25px; 
+    display: flex;
+    align-items: center; 
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+nav a[href*="login.php"], 
+nav a[href*="register.php"] {
+    margin-left: auto; 
+}
+
+nav a[href*="login.php"] + a[href*="register.php"] {
+    margin-left: 0; 
+}
+
+nav a.active {
+    background-color: #3284b4; 
+    font-weight: bold;
+}
+
+nav a:hover:not(.brand) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.brand {
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 0;
+}
+
+nav span {
+    color: #cfe3ec;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
