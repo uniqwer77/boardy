@@ -1,5 +1,5 @@
 server {
-
+    listen 80;
     server_name tlop.ai-info.ru;
 
     root /var/www/boardy;
