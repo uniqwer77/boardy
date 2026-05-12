@@ -1,0 +1,51 @@
+<?php 
+    session_set_cookie_params([
+        'lifetime' => 0,          
+        'path'     => '/',
+        'secure'   => true,     
+        'httponly' => true,      
+        'samesite' => 'Lax'       
+    ]);
+
+    session_start();
+?>
+
+<!DOCTYPE html>
+<html lang="ru">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Boardy</title>
+        <!-- <link rel="stylesheet" href="/css/style.css"> -->
+    </head>
+
+    <body>
+        <header>
+            <?php include __DIR__ . '/partials/nav.php'; ?>
+            <h1>Boardy</h1>
+            <p>Микро-доска объявлений</p>
+        </header>
+
+        <main>
+            
+            <section>
+                <h2>О проекте</h2>
+                <p>Boardy — учебный проект курса
+                «Архитектура веб-приложений».</p>
+
+                <p>Публикуйте посты, комментируйте,
+                получайте уведомления в реальном времени.</p>
+            </section>
+
+            <section>
+                <h2>Обратная связь</h2>
+                <p><a href="/feedback.php">Написать сообщение</a></p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Boardy | Чазов</p>
+        </footer>
+    </body>
+</html>
