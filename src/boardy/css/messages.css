@@ -45,3 +45,18 @@ body {
   line-height: 1.6;        
   font-size: 18px;
 }
+
+.alert-github {
+    background-color: #d4edda; /* Светло-зеленый фон */
+    color: #155724;            /* Темно-зеленый текст */
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #c3e6cb;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+.alert-github strong {
+    font-weight: bold;
+}

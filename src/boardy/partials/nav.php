@@ -22,6 +22,7 @@
             <span>Привет, <?= htmlspecialchars($user_name) ?>!</span>
             <a href="/logout.php">Выйти</a>
         <?php else: ?>
+            <a href="/oauth-github.php" class="btn-github-nav"> Войти через GitHub </a>
             <a href="/login.php" <?= isActive('/login.php', $current_page) ?>>Вход</a>
             <a href="/register.php" <?= isActive('/register.php', $current_page) ?>>Регистрация</a>
         <?php endif; ?>

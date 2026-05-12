@@ -2,7 +2,7 @@
 session_set_cookie_params([
     'lifetime' => 0,          
     'path'     => '/',
-    'secure'   => true,    
+    'secure'   => false,    
     'httponly' => true,       
     'samesite' => 'Lax'      
 ]);
@@ -57,6 +57,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             <button type="submit" class="btn-submit">Войти</button>
         </form>
+
+        <div class="divider">
+            <span>или</span>
+        </div>
+
+        <a href="/oauth-github.php" class="btn-github">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo">
+            Войти через GitHub
+        </a>
 
         <div class="login-footer">
             Нет аккаунта? <a href="/register.php">Регистрация</a>
