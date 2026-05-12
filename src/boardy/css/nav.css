@@ -38,15 +38,6 @@ nav a {
     white-space: nowrap;
 }
 
-nav a[href*="login.php"], 
-nav a[href*="register.php"] {
-    margin-left: auto; 
-}
-
-nav a[href*="login.php"] + a[href*="register.php"] {
-    margin-left: 0; 
-}
-
 nav a.active {
     background-color: #3284b4; 
     font-weight: bold;
@@ -67,4 +58,10 @@ nav span {
     display: flex;
     align-items: center;
     padding: 0 15px;
+}
+
+.btn-github-nav {
+    background-color: #24292e !important;
+    color: #fff !important;
+    margin-left: 1200px; 
 }

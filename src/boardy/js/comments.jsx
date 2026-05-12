@@ -1,13 +1,22 @@
 const { useState, useEffect } = React;
 
-const API = 'https://api.tlop.ai-info.ru'; // ← ваш домен
-const POST_ID = 7; // ← ID поста
+const API = 'http://api.tlop.ai-info.ru'; // ← ваш домен
+const POST_ID = 1; // ← ID поста
 
 function ItemList() {
     const [items, setItems] = useState([]);
     const [text, setText] = useState('');
     const [editId, setEditId] = useState(null);
     const [editText, setEditText] = useState('');
+    const [jwt, setJwt] = useState(null);
+
+    const headers = { 
+        'Content-Type': 'application/json',
+    }; 
+
+    if (jwt) { 
+        headers['Authorization'] = 'Bearer ' + jwt; 
+    }
     
     const load = async () => {
         const res = await fetch(`${API}/api/posts/${POST_ID}/comments`);
@@ -17,25 +26,40 @@ function ItemList() {
     
     useEffect(() => {
         load();
-    }, []);
 
+        fetch('/api/me.php', {
+            credentials: 'include'
+        })
+            .then((r) => {
+                if (!r.ok) return null; // не залогинен
+                return r.json();
+            })
+            .then((data) => {
+                if (data && data.token) {
+                    setJwt(data.token);
+                }
+            })
+            .catch(() => setJwt(null));
+        
+    }, []);
+    
     const add = async () => {
         if (!text.trim()) return;
         
         await fetch(`${API}/api/posts/${POST_ID}/comments`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers,
             body: JSON.stringify({ body: text })
         });
         
         setText(''); // ← очистить (React перерисует поле)
         load(); // ← обновить список
     };
-
+    
     const save = async (id) => {
         await fetch(`${API}/api/comments/${id}`, {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
+            headers,
             body: JSON.stringify({ body: editText })
         });
         
