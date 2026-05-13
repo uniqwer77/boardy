@@ -2,7 +2,7 @@
 session_set_cookie_params([
     'lifetime' => 0,          
     'path'     => '/',
-    'secure'   => true,    
+    'secure'   => false,    
     'httponly' => true,       
     'samesite' => 'Lax'      
 ]);
@@ -10,6 +10,8 @@ session_set_cookie_params([
 session_start();
 
 require_once 'db.php';
+
+$is_github_user = $_SESSION['is_github_user'] ?? false;
 
 $stmt = $pdo->query(
   'SELECT posts.body, users.name, posts.created_at
@@ -27,6 +29,12 @@ $messages = $stmt->fetchAll();
   <div class="posts-container">
     <h1 class="posts-header">Все посты</h1>
 
+    <?php if (!empty($_SESSION['user_id']) && $is_github_user): ?>
+    <div class="alert-github">
+        Вы вошли через GitHub как <strong><?= htmlspecialchars($_SESSION['user_name']) ?></strong>
+    </div>
+    <?php endif; ?>
+
     <?php if (empty($messages)): ?>
     <p>Постов пока нет.</p>
     <?php else: ?>
@@ -43,6 +51,5 @@ $messages = $stmt->fetchAll();
   </div>
 
 </main>
-
 
 <?php include __DIR__ . '/partials/foot.php'; ?>
