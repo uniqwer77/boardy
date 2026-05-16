@@ -1,18 +1,17 @@
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import FastAPI
 from datetime import datetime
 import aiomysql
 from routers import comments
- 
-app = FastAPI(title='Boardy API', version='0.2.0')
+from routers import ws
 
 app = FastAPI(title='Boardy API', version='0.2.0')
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://tlop.ai-info.ru",   # твой фронтенд
-        "http://localhost:3000",     # если тестишь локально
+        "https://tlop.ai-info.ru",  
+        "http://localhost:3000",    
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -20,6 +19,13 @@ app.add_middleware(
 )
  
 app.include_router(comments.router)
+app.include_router(ws.router)
+
+@app.post('/internal/broadcast')  # - добавить
+async def internal_broadcast(request: Request):
+    data = await request.json()
+    await ws.manager.broadcast({'type': 'new_post', 'post': data})
+    return {'ok': True}
 
 DB_CONFIG = {
     'host': '127.0.0.1',
